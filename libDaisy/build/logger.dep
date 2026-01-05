@@ -1,0 +1,125 @@
+build/src/hid/logger.o: src/hid/logger.cpp \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstring \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+dp/hard/bits/c++config.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+dp/hard/bits/os_defines.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+dp/hard/bits/cpu_defines.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/string.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/_ansi.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/newlib.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/_newlib_version.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/config.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/ieeefp.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/features.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/reent.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/_ansi.h \
+ /Library/DaisyToolchain/0.2.0/arm/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_types.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/_types.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/_default_types.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/lock.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/cdefs.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_locale.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/strings.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/string.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstdarg \
+ /Library/DaisyToolchain/0.2.0/arm/lib/gcc/arm-none-eabi/10.3.1/include/stdarg.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstdio \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/stdio.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/types.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_stdint.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/endian.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/_endian.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/select.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_sigset.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_timeval.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/timespec.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_timespec.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_pthreadtypes.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/sched.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/types.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/stdio.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cassert \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/assert.h \
+ src/hid/logger.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cmath \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/bits/cpp_type_traits.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/ext/type_traits.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/math.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/bits/std_abs.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/stdlib.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/stdlib.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/alloca.h \
+ src/hid/logger_impl.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/unistd.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/unistd.h \
+ src/hid/usb.h \
+ /Library/DaisyToolchain/0.2.0/arm/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/stdint.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_intsup.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/stdlib.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstdlib \
+ src/sys/system.h \
+ /Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstdint \
+ src/per/tim.h
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstring:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+dp/hard/bits/c++config.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+dp/hard/bits/os_defines.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+dp/hard/bits/cpu_defines.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/string.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/_ansi.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/newlib.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/_newlib_version.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/config.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/ieeefp.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/features.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/reent.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/_ansi.h:
+/Library/DaisyToolchain/0.2.0/arm/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_types.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/_types.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/_default_types.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/lock.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/cdefs.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_locale.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/strings.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/string.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstdarg:
+/Library/DaisyToolchain/0.2.0/arm/lib/gcc/arm-none-eabi/10.3.1/include/stdarg.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstdio:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/stdio.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/types.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_stdint.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/endian.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/_endian.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/select.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_sigset.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_timeval.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/timespec.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_timespec.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_pthreadtypes.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/sched.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/types.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/stdio.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cassert:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/assert.h:
+src/hid/logger.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cmath:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/bits/cpp_type_traits.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/ext/type_traits.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/math.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/bits/std_abs.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/stdlib.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/machine/stdlib.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/alloca.h:
+src/hid/logger_impl.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/unistd.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/unistd.h:
+src/hid/usb.h:
+/Library/DaisyToolchain/0.2.0/arm/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/stdint.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/sys/_intsup.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/stdlib.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstdlib:
+src/sys/system.h:
+/Library/DaisyToolchain/0.2.0/arm/arm-none-eabi/include/c++/10.3.1/cstdint:
+src/per/tim.h:
