@@ -6,7 +6,7 @@ using namespace daisysp;
 
 // MIDI CC Assignments (Arturia Keylab knobs)
 #define CC_AMP_ATTACK     73
-#define CC_AMP_DECAY      75  
+#define CC_AMP_DECAY      75
 #define CC_AMP_SUSTAIN    79
 #define CC_AMP_RELEASE    72
 #define CC_FILT_ATTACK    80
@@ -120,7 +120,7 @@ void UpdateOscFreqs() {
     subOsc.SetFreq(base * 0.5f);            // Sub oscillator (octave down)
 }
 
-void PushNote(int note) 
+void PushNote(int note)
 {
     // Add note to stack if not already there
     if (!held[note] && stack_size < 128) {
@@ -131,7 +131,7 @@ void PushNote(int note)
     UpdateOscFreqs();
 }
 
-void PopNote(int note) 
+void PopNote(int note)
 {
     if (!held[note]) return;
     
@@ -258,7 +258,7 @@ void HandleControlChange(uint8_t control, uint8_t value)
             SetOscillatorWaveforms();
             break;
         case CC_OSC2_WAVE:
-            osc2Wave = (value * 3) / 127;  // 0-3 waveform selection  
+            osc2Wave = (value * 3) / 127;  // 0-3 waveform selection
             if (osc2Wave > 3) osc2Wave = 3;
             SetOscillatorWaveforms();
             break;
