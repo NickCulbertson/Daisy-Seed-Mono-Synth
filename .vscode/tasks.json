@@ -1,108 +1,106 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Pull Submodules",
-            "type": "shell",
-            "command": "git submodule update --init --recursive",
-            "group": "build",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            }
-        },
-        {
-            "label": "Initialize Project", 
-            "type": "shell",
-            "command": "git submodule update --init --recursive && ./ci/build_libs.sh",
-            "group": "build",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            }
-        },
-        {
-            "label": "Build All",
-            "type": "shell",
-            "command": "./rebuild_all.sh",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "dependsOn": "Pull Submodules",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            },
-            "problemMatcher": {
-                "owner": "cpp",
-                "fileLocation": "relative",
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            }
-        },
-        {
-            "label": "Build Libraries",
-            "type": "shell",
-            "command": "./ci/build_libs.sh",
-            "group": "build",
-            "dependsOn": "Pull Submodules",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            }
-        },
-        {
-            "label": "Build Project",
-            "type": "shell",
-            "command": "make",
-            "group": "build",
-            "dependsOn": "Build Libraries",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            },
-            "problemMatcher": {
-                "owner": "cpp",
-                "fileLocation": "relative",
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            }
-        },
-        {
-            "label": "Clean",
-            "type": "shell",
-            "command": "make clean",
-            "group": "build"
-        },
-        {
-            "label": "Program DFU",
-            "type": "shell",
-            "command": "make program-dfu",
-            "group": "test",
-            "dependsOn": "Build Project"
-        }
-    ]
+  "tasks": [
+    {
+      "command": "make clean; make",
+      "group": {
+        "isDefault": true,
+        "kind": "build"
+      },
+      "label": "build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "type": "shell"
+    },
+    {
+      "command": "make clean; make; make program",
+      "label": "build_and_program",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "type": "shell"
+    },
+    {
+      "command": "make clean; make; make program-dfu",
+      "label": "build_and_program_dfu",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "type": "shell"
+    },
+    {
+      "command": "make clean;make",
+      "dependsOn": [
+        "build_libdaisy",
+        "build_daisysp"
+      ],
+      "label": "build_all",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "type": "shell"
+    },
+    {
+      "command": "make clean;DEBUG=1 make",
+      "dependsOn": [
+        "build_libdaisy",
+        "build_daisysp"
+      ],
+      "label": "build_all_debug",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "type": "shell"
+    },
+    {
+      "command": "make program-dfu",
+      "label": "program-dfu",
+      "problemMatcher": [],
+      "type": "shell"
+    },
+    {
+      "command": "make program",
+      "label": "program",
+      "problemMatcher": [],
+      "type": "shell"
+    },
+    {
+      "command": "make",
+      "label": "build_libdaisy",
+      "options": {
+        "cwd": "${workspaceFolder}/../libDaisy"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "type": "shell"
+    },
+    {
+      "command": "make",
+      "label": "build_daisysp",
+      "options": {
+        "cwd": "${workspaceFolder}/../DaisySP"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "type": "shell"
+    }
+  ],
+  "version": "2.0.0"
 }

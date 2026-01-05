@@ -26,6 +26,25 @@ using namespace daisysp;
 // Note: Mod wheel (CC 1) controls pulse width, handled separately
 
 
+// Features:
+//   - USB MIDI input (Note On/Off, CC, Pitch Bend, Program Change)
+//   - 8 built-in presets via MIDI Program Change (0-7)
+//   - Dual oscillators with detune and waveform selection
+//   - Sub oscillator (octave down)
+//   - Dual ADSR envelopes (amp + filter)
+//   - State variable filter with resonance
+//   - Drive/distortion effect
+//
+// MIDI Program Change Presets:
+//   0: Init - Your current default settings (start here!)
+//   1: Classic Analog Lead - Sharp saw lead with moderate filter
+//   2: Warm Pad - Slow attack, lush detuned oscillators
+//   3: Plucky Bass - Quick envelope, heavy sub, punchy filter
+//   4: Ethereal Lead - Heavy detune, sine/tri waves, dreamy
+//   5: Aggressive Sync - Heavy filter sweep, pulse waves
+//   6: Deep Sub Bass - Maximum sub level, minimal highs
+//   7: Pulse Wave Lead - Narrow pulse, bright filter
+//
 // Future enhancements
 //   - LFO for modulation
 //   - Portamento/glide
@@ -67,6 +86,69 @@ int osc2Wave = 0;               // Osc2 waveform (0=saw, 1=square, 2=tri, 3=sine
 float pitchBend = 0.0f;         // Pitch bend amount (-2 to +2 semitones)
 float drive = 0.0f;             // Drive/distortion amount (0-1)
 
+// Preset system
+struct SynthPreset {
+    // Oscillator settings
+    float detune;
+    float oscMix;
+    float subLevel;
+    int osc1Wave;
+    int osc2Wave;
+    float pulseWidth;
+    
+    // Filter settings
+    float baseCutoff;
+    float resonance;
+    float filtEnvAmt;
+    
+    // Amp envelope settings
+    float ampAttack, ampDecay, ampSustain, ampRelease;
+    
+    // Filter envelope settings
+    float filtAttack, filtDecay, filtSustain, filtRelease;
+    
+    // Effects
+    float drive;
+    float masterVol;
+};
+
+// Predefined presets
+SynthPreset presets[8] = {
+    // Preset 0: Init - Your current default settings
+    {0.002f, 0.5f, 0.8f, 0, 0, 0.5f, 200.0f, 0.1f, 8000.0f,
+     0.001f, 0.1f, 1.0f, 0.1f, 0.001f, 0.05f, 0.0f, 0.05f, 0.0f, 1.0f},
+    
+    // Preset 1: Classic Analog Lead
+    {0.005f, 0.3f, 0.2f, 0, 0, 0.5f, 1200.0f, 0.7f, 4000.0f, 
+     0.001f, 0.2f, 0.8f, 0.3f, 0.001f, 0.1f, 0.0f, 0.2f, 0.1f, 0.8f},
+    
+    // Preset 2: Warm Pad
+    {0.008f, 0.5f, 0.6f, 0, 0, 0.5f, 800.0f, 0.3f, 2000.0f,
+     0.8f, 1.2f, 0.9f, 1.5f, 0.5f, 0.8f, 0.4f, 1.0f, 0.0f, 0.7f},
+    
+    // Preset 3: Plucky Bass
+    {0.002f, 0.1f, 0.9f, 1, 1, 0.3f, 400.0f, 0.8f, 6000.0f,
+     0.001f, 0.05f, 0.6f, 0.1f, 0.001f, 0.03f, 0.0f, 0.05f, 0.2f, 0.9f},
+    
+    // Preset 4: Ethereal Lead
+    {0.015f, 0.7f, 0.3f, 3, 2, 0.5f, 2000.0f, 0.2f, 3000.0f,
+     0.3f, 0.8f, 0.7f, 2.0f, 0.2f, 0.6f, 0.3f, 1.5f, 0.0f, 0.6f},
+    
+    // Preset 5: Aggressive Sync Lead  
+    {0.025f, 0.8f, 0.4f, 1, 0, 0.7f, 1800.0f, 0.9f, 7000.0f,
+     0.001f, 0.1f, 0.7f, 0.2f, 0.001f, 0.05f, 0.0f, 0.1f, 0.4f, 0.8f},
+    
+    // Preset 6: Deep Sub Bass
+    {0.001f, 0.2f, 1.0f, 0, 0, 0.5f, 300.0f, 0.5f, 1000.0f,
+     0.001f, 0.3f, 0.9f, 0.8f, 0.1f, 0.2f, 0.1f, 0.3f, 0.1f, 1.0f},
+    
+    // Preset 7: Pulse Wave Lead
+    {0.003f, 0.6f, 0.1f, 1, 1, 0.2f, 1500.0f, 0.6f, 5000.0f,
+     0.01f, 0.15f, 0.8f, 0.4f, 0.01f, 0.08f, 0.0f, 0.15f, 0.0f, 0.7f}
+};
+
+int currentPreset = 0;
+
 // MIDI CC value mapping functions
 float MapTime(uint8_t val, float minT, float maxT) {
     float norm = static_cast<float>(val) / 127.0f;
@@ -88,6 +170,51 @@ float MapCutoff(uint8_t val) {
 float MapResonance(uint8_t val) {
     float norm = static_cast<float>(val) / 127.0f;
     return 0.1f + norm * 0.85f;  // 0.1 to 0.95 range
+}
+
+// Forward declarations
+void SetOscillatorWaveforms();
+void UpdateOscFreqs();
+
+// Preset management
+void LoadPreset(int presetNum) {
+    if (presetNum < 0 || presetNum >= 8) return;
+    
+    currentPreset = presetNum;
+    SynthPreset& p = presets[presetNum];
+    
+    // Load oscillator settings
+    detune = p.detune;
+    oscMix = p.oscMix;
+    subLevel = p.subLevel;
+    osc1Wave = p.osc1Wave;
+    osc2Wave = p.osc2Wave;
+    pulseWidth = p.pulseWidth;
+    
+    // Load filter settings
+    baseCutoff = p.baseCutoff;
+    resonance = p.resonance;
+    filtEnvAmt = p.filtEnvAmt;
+    
+    // Load amp envelope settings
+    ampEnv.SetTime(ADSR_SEG_ATTACK, p.ampAttack);
+    ampEnv.SetTime(ADSR_SEG_DECAY, p.ampDecay);
+    ampEnv.SetSustainLevel(p.ampSustain);
+    ampEnv.SetTime(ADSR_SEG_RELEASE, p.ampRelease);
+    
+    // Load filter envelope settings
+    filtEnv.SetTime(ADSR_SEG_ATTACK, p.filtAttack);
+    filtEnv.SetTime(ADSR_SEG_DECAY, p.filtDecay);
+    filtEnv.SetSustainLevel(p.filtSustain);
+    filtEnv.SetTime(ADSR_SEG_RELEASE, p.filtRelease);
+    
+    // Load effects
+    drive = p.drive;
+    masterVol = p.masterVol;
+    
+    // Update hardware
+    SetOscillatorWaveforms();
+    UpdateOscFreqs();
 }
 
 // Waveform management
@@ -337,6 +464,11 @@ void HandleMidiEvent(MidiEvent msg) {
             UpdateOscFreqs();
             break;
         }
+        case ProgramChange: {
+            auto pc = msg.AsProgramChange();
+            LoadPreset(pc.program % 8);  // Wrap to 0-7 range
+            break;
+        }
         default:
             // Ignore unhandled MIDI message types
             break;
@@ -384,6 +516,9 @@ int main(void) {
     filt.Init(sampleRate);
     filt.SetFreq(baseCutoff);
     filt.SetRes(resonance);
+
+    // Load default preset
+    LoadPreset(0);  // Start with preset 0 (Classic Analog Lead)
 
     // Start audio processing
     hw.StartAudio(AudioCallback);
