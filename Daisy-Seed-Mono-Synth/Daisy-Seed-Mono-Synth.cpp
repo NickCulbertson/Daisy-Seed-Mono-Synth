@@ -86,7 +86,7 @@ int osc2Wave = 0;               // Osc2 waveform (0=saw, 1=square, 2=tri, 3=sine
 float pitchBend = 0.0f;         // Pitch bend amount (-2 to +2 semitones)
 float drive = 0.0f;             // Drive/distortion amount (0-1)
 
-// Preset system
+// Preset
 struct SynthPreset {
     // Oscillator settings
     float detune;
