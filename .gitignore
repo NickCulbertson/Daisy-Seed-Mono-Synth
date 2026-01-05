@@ -1,0 +1,15 @@
+build/
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.lst
+*.d
+.DS_Store
+.vscode/settings.json
+.vscode/c_cpp_properties.json
+
+# Libraries are included as copies (not submodules)
+# libDaisy/
+# DaisySP/
