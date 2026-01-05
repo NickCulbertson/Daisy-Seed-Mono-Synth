@@ -2,8 +2,8 @@
 
 ## Author
 
-<!-- Insert Your Name Here -->
+Nick Culbertson | Moby Pixel
 
 ## Description
 
-<!-- Describe your example here -->
+Fat Mono Synth
