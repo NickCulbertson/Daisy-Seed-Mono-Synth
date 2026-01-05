@@ -10,6 +10,4 @@ build/
 .vscode/settings.json
 .vscode/c_cpp_properties.json
 
-# Libraries are included as copies (not submodules)
-# libDaisy/
-# DaisySP/
+# Libraries are now Git submodules (not copied files)
