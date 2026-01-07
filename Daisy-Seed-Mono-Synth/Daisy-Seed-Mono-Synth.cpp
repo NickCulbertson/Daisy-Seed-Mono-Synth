@@ -175,6 +175,7 @@ float MapResonance(uint8_t val) {
 // Forward declarations
 void SetOscillatorWaveforms();
 void UpdateOscFreqs();
+void PrintCurrentPreset();
 
 // Preset management
 void LoadPreset(int presetNum) {
@@ -215,6 +216,21 @@ void LoadPreset(int presetNum) {
     // Update hardware
     SetOscillatorWaveforms();
     UpdateOscFreqs();
+}
+
+// Debug function to print current parameter values
+void PrintCurrentPreset() {
+    hw.PrintLine("=== Current Preset Values ===");
+    hw.PrintLine("// Copy this into presets array:");
+    hw.PrintLine("{%.3ff, %.3ff, %.3ff, %d, %d, %.3ff, %.1ff, %.3ff, %.1ff,", 
+                 detune, oscMix, subLevel, osc1Wave, osc2Wave, pulseWidth, baseCutoff, resonance, filtEnvAmt);
+    
+    // Get current envelope values (approximate)
+    hw.PrintLine(" %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff},",
+                 0.001f, 0.1f, 1.0f, 0.1f,  // amp envelope (defaults, would need proper getter)
+                 0.001f, 0.05f, 0.0f, 0.05f, // filt envelope (defaults)
+                 drive, masterVol);
+    hw.PrintLine("========================");
 }
 
 // Waveform management
@@ -397,6 +413,7 @@ void HandleControlChange(uint8_t control, uint8_t value)
         case CC_MASTER_VOL:
             masterVol = MapSustain(value);  // 0-1 master volume
             break;
+            
     }
 }
 
@@ -466,6 +483,10 @@ void HandleMidiEvent(MidiEvent msg) {
         }
         case ProgramChange: {
             auto pc = msg.AsProgramChange();
+            if (pc.program == 20) {
+                PrintCurrentPreset();
+                return;
+            }
             LoadPreset(pc.program % 8);  // Wrap to 0-7 range
             break;
         }
