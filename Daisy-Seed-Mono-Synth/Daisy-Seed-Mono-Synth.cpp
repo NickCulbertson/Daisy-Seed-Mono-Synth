@@ -118,25 +118,25 @@ SynthPreset presets[8] = {
     {0.002f, 0.5f, 0.8f, 0, 0, 0.5f, 200.0f, 0.1f, 8000.0f,
      0.001f, 0.1f, 1.0f, 0.1f, 0.001f, 0.05f, 0.0f, 0.05f, 0.0f, 1.0f},
     
-    // Preset 1: Classic Analog Lead
-    {0.005f, 0.3f, 0.2f, 0, 0, 0.5f, 1200.0f, 0.7f, 4000.0f, 
-     0.001f, 0.2f, 0.8f, 0.3f, 0.001f, 0.1f, 0.0f, 0.2f, 0.1f, 0.8f},
+    // Preset 1: G-Thang
+    {0.003f, 0.504f, 0.0f, 0, 0, 0.5f, 80.0f, 0.1f, 8000.0f,
+     0.001f, 0.005f, 1.0f, 0.089f, 0.001f, 0.005f, 1.0f, 0.01f, 0.0f, 1.0f},
     
-    // Preset 2: Warm Pad
-    {0.008f, 0.5f, 0.6f, 0, 0, 0.5f, 800.0f, 0.3f, 2000.0f,
-     0.8f, 1.2f, 0.9f, 1.5f, 0.5f, 0.8f, 0.4f, 1.0f, 0.0f, 0.7f},
+    // Preset 2: Take Me On
+    {0.002f, 0.583f, 0.276f, 0, 0, 0.5f, 80.0f, 0.1f, 8000.0f,
+     0.001f, 0.145f, 0.504f, 0.231f, 0.001f, 0.145f, 0.504f, 0.231f, 0.0f, 1.0f},
     
-    // Preset 3: Plucky Bass
-    {0.002f, 0.1f, 0.9f, 1, 1, 0.3f, 400.0f, 0.8f, 6000.0f,
-     0.001f, 0.05f, 0.6f, 0.1f, 0.001f, 0.03f, 0.0f, 0.05f, 0.2f, 0.9f},
+    // Preset 3: Bass Drive
+    {0.004f, 0.504f, 0.504f, 1, 1, 0.5f, 80.0f, 0.1f, 8000.0f,
+     0.001f, 0.145f, 1.0f, 0.01f, 0.001f, 0.145f, 1.0f, 0.231f, 0.252f, 1.0f},
     
-    // Preset 4: Ethereal Lead
-    {0.015f, 0.7f, 0.3f, 3, 2, 0.5f, 2000.0f, 0.2f, 3000.0f,
-     0.3f, 0.8f, 0.7f, 2.0f, 0.2f, 0.6f, 0.3f, 1.5f, 0.0f, 0.6f},
+    // Preset 4: 8bit
+    {0.0f, 0.0f, 0.0f, 1, 1, 0.541f, 80.0f, 0.1f, 5039.0f,
+     0.001f, 0.005f, 1.0f, 0.01f, 0.001f, 0.005f, 1.0f, 0.01f, 0.0f, 1.0f},
     
-    // Preset 5: Aggressive Sync Lead  
-    {0.025f, 0.8f, 0.4f, 1, 0, 0.7f, 1800.0f, 0.9f, 7000.0f,
-     0.001f, 0.1f, 0.7f, 0.2f, 0.001f, 0.05f, 0.0f, 0.1f, 0.4f, 0.8f},
+    // Preset 5: Sines
+    {0.003f, 0.504f, 0.0f, 3, 3, 0.541f, 80.0f, 0.1f, 8000.0f,
+     0.001f, 0.005f, 1.0f, 0.932f, 0.001f, 0.005f, 1.0f, 0.932f, 0.315f, 1.0f},
     
     // Preset 6: Deep Sub Bass
     {0.001f, 0.2f, 1.0f, 0, 0, 0.5f, 300.0f, 0.5f, 1000.0f,
@@ -175,7 +175,6 @@ float MapResonance(uint8_t val) {
 // Forward declarations
 void SetOscillatorWaveforms();
 void UpdateOscFreqs();
-void PrintCurrentPreset();
 
 // Preset management
 void LoadPreset(int presetNum) {
@@ -216,21 +215,6 @@ void LoadPreset(int presetNum) {
     // Update hardware
     SetOscillatorWaveforms();
     UpdateOscFreqs();
-}
-
-// Debug function to print current parameter values
-void PrintCurrentPreset() {
-    hw.PrintLine("=== Current Preset Values ===");
-    hw.PrintLine("// Copy this into presets array:");
-    hw.PrintLine("{%.3ff, %.3ff, %.3ff, %d, %d, %.3ff, %.1ff, %.3ff, %.1ff,", 
-                 detune, oscMix, subLevel, osc1Wave, osc2Wave, pulseWidth, baseCutoff, resonance, filtEnvAmt);
-    
-    // Get current envelope values (approximate)
-    hw.PrintLine(" %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff, %.3ff},",
-                 0.001f, 0.1f, 1.0f, 0.1f,  // amp envelope (defaults, would need proper getter)
-                 0.001f, 0.05f, 0.0f, 0.05f, // filt envelope (defaults)
-                 drive, masterVol);
-    hw.PrintLine("========================");
 }
 
 // Waveform management
@@ -483,10 +467,6 @@ void HandleMidiEvent(MidiEvent msg) {
         }
         case ProgramChange: {
             auto pc = msg.AsProgramChange();
-            if (pc.program == 20) {
-                PrintCurrentPreset();
-                return;
-            }
             LoadPreset(pc.program % 8);  // Wrap to 0-7 range
             break;
         }

@@ -50,15 +50,17 @@ A comprehensive USB MIDI controlled monosynth for the Electrosmith Daisy Seed pl
 ### Presets
 - **Program Change 0-7**: Switch between 8 built-in presets
   - **0**: Init - Default clean settings
-  - **1**: Classic Analog Lead - Sharp saw lead with moderate filter
-  - **2**: Warm Pad - Slow attack, lush detuned oscillators  
-  - **3**: Plucky Bass - Quick envelope, heavy sub, punchy filter
-  - **4**: Ethereal Lead - Heavy detune, sine/tri waves, dreamy
-  - **5**: Aggressive Sync - Heavy filter sweep, pulse waves
+  - **1**: G-Thang - Filter sweep with balanced oscillators
+  - **2**: Take Me On - Detuned saws with sub, moderate envelopes
+  - **3**: Bass Drive - Square waves with sub and drive for aggressive bass
+  - **4**: 8bit - Pure square wave with narrow pulse, retro video game sound
+  - **5**: Sines - Smooth sine waves with slight detune and drive warmth
   - **6**: Deep Sub Bass - Maximum sub level, minimal highs
   - **7**: Pulse Wave Lead - Narrow pulse, bright filter
 
 ## Build Instructions
+
+NOTE: Start with installing the Daisy Seed examples repo. It will help you get everything setup properly.
 
 1. **Install Dependencies**:
    ```bash
@@ -71,7 +73,7 @@ A comprehensive USB MIDI controlled monosynth for the Electrosmith Daisy Seed pl
 
 2. **Clone Repository**:
    ```bash
-   git clone https://github.com/yourusername/Daisy-Seed-Mono-Synth.git
+   git clone https://github.com/YOUR_USERNAME/Daisy-Seed-Mono-Synth.git
    cd Daisy-Seed-Mono-Synth
    ```
    *(Libraries are included - no submodule initialization needed)*
@@ -118,10 +120,11 @@ A comprehensive USB MIDI controlled monosynth for the Electrosmith Daisy Seed pl
 
 This project is based on the libDaisy and DaisySP libraries from Electrosmith. The synthesizer features:
 
-- Polyphonic note management with proper note priority
+- Monophonic note management with proper note priority (LIFO)
 - Real-time MIDI CC parameter control  
 - High-quality audio synthesis at 48kHz
 - Professional synthesizer architecture
+- 8 presets covering various musical styles
 
 ## Troubleshooting
 
