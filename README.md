@@ -145,7 +145,3 @@ This project is based on the libDaisy and DaisySP libraries from Electrosmith. T
 - Put Daisy Seed in DFU mode (hold BOOT button, press RESET)
 - Use `make program-dfu` to program via USB
 - Ensure USB cable supports data transfer
-
-## License
-
-This project follows the same license as the underlying Daisy libraries.
