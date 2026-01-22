@@ -2,6 +2,10 @@
 
 A comprehensive USB MIDI controlled monosynth for the Electrosmith Daisy Seed platform.
 
+(Click to watch "DIY Daisy Seed Mono Synth | Simple Build, Big Sound")
+
+[![DIY Daisy Seed Mono Synth | Simple Build, Big Sound](https://img.youtube.com/vi/hb_fzLtgpfs/0.jpg)](https://www.youtube.com/watch?v=hb_fzLtgpfs "DIY Daisy Seed Mono Synth | Simple Build, Big Sound")
+
 ## Features
 
 - **USB MIDI Input**: Control via any MIDI keyboard or DAW
