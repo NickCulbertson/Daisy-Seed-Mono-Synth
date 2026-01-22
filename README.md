@@ -6,6 +6,10 @@ A comprehensive USB MIDI controlled monosynth for the Electrosmith Daisy Seed pl
 
 Demo Video: ["DIY Daisy Seed Mono Synth | Simple Build, Big Sound"](https://youtu.be/hb_fzLtgpfs)
 
+---
+
+Disclaimer: This project was writing with Claude Code assistance. 🤖 
+
 ## Features
 
 - **USB MIDI Input**: Control via any MIDI keyboard or DAW
