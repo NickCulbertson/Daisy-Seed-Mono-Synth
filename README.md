@@ -62,11 +62,10 @@ Demo Video: ["DIY Daisy Seed Mono Synth | Simple Build, Big Sound"](https://yout
   - **6**: Deep Sub Bass - Maximum sub level, minimal highs
   - **7**: Pulse Wave Lead - Narrow pulse, bright filter
 
-## Build Instructions
-
-### AI Disclaimer
+## AI Disclaimer
 This project was made using Claude Code assistance. 🤖
 
+## Build Instructions
 NOTE: Start with installing the Daisy Seed examples repo. It will help you get everything setup properly.
 
 1. **Install Dependencies**:
