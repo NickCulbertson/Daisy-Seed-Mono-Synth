@@ -149,5 +149,5 @@ This project is based on the libDaisy and DaisySP libraries from Electrosmith. T
 - Use `make program-dfu` to program via USB
 - Ensure USB cable supports data transfer
 
-## AI Disclaimer
-This project was made using Claude Code assistance. 🤖
+## AI Transparency
+This project was made with assistance from Claude Code. 🤖
