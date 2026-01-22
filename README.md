@@ -62,9 +62,6 @@ Demo Video: ["DIY Daisy Seed Mono Synth | Simple Build, Big Sound"](https://yout
   - **6**: Deep Sub Bass - Maximum sub level, minimal highs
   - **7**: Pulse Wave Lead - Narrow pulse, bright filter
 
-## AI Disclaimer
-This project was made using Claude Code assistance. 🤖
-
 ## Build Instructions
 NOTE: Start with installing the Daisy Seed examples repo. It will help you get everything setup properly.
 
@@ -151,3 +148,6 @@ This project is based on the libDaisy and DaisySP libraries from Electrosmith. T
 - Put Daisy Seed in DFU mode (hold BOOT button, press RESET)
 - Use `make program-dfu` to program via USB
 - Ensure USB cable supports data transfer
+
+## AI Disclaimer
+This project was made using Claude Code assistance. 🤖
