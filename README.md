@@ -63,40 +63,7 @@ Demo Video: ["DIY Daisy Seed Mono Synth | Simple Build, Big Sound"](https://yout
   - **7**: Pulse Wave Lead - Narrow pulse, bright filter
 
 ## Build Instructions
-NOTE: Start with installing the Daisy Seed examples repo. It will help you get everything setup properly.
-
-1. **Install Dependencies**:
-   ```bash
-   # Install ARM toolchain (macOS with Homebrew)
-   brew install --cask gcc-arm-embedded
-   
-   # Or use the official ARM installer from:
-   # https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm
-   ```
-
-2. **Clone Repository**:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/Daisy-Seed-Mono-Synth.git
-   cd Daisy-Seed-Mono-Synth
-   git submodule update --init --recursive
-   ```
-
-3. **Build Libraries** (from project root):
-   ```bash
-   make -C libDaisy
-   make -C DaisySP  
-   ```
-
-4. **Build Project** (from Daisy-Seed-Mono-Synth subfolder):
-   ```bash
-   cd Daisy-Seed-Mono-Synth
-   make
-   ```
-
-5. **Program Device**:
-   ```bash
-   make program-dfu
-   ```
+The project now follows the same build steps as the Daisy Examples repo. Refer to that page for steps on getting it all setup: https://github.com/electro-smith/DaisyExamples
 
 ## Project Structure
 
@@ -134,15 +101,7 @@ This project is based on the libDaisy and DaisySP libraries from Electrosmith. T
 ### Build Issues
 - Ensure ARM toolchain is properly installed  
 - Check that libDaisy and DaisySP built successfully before building main project
-- Libraries are included in the repo (no submodules needed)
-- Use VS Code tasks for easier building: `Ctrl/Cmd + Shift + P` → "Tasks: Run Task" → "build"
-
-### Updating Libraries
-- Libraries are included as regular files for convenience
-- To update to newer versions: replace `libDaisy/` and `DaisySP/` folders with latest from:
-  - [libDaisy releases](https://github.com/electro-smith/libDaisy)
-  - [DaisySP releases](https://github.com/electro-smith/DaisySP)
-- After updating, rebuild libraries: `make -C libDaisy && make -C DaisySP`
+- Use VS Code tasks for easier building: `Ctrl/Cmd + Shift + P` → "Tasks: Run Task" → "build_and_program_dfu"
 
 ### Programming Issues
 - Put Daisy Seed in DFU mode (hold BOOT button, press RESET)
