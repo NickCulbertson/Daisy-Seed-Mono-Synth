@@ -78,8 +78,8 @@ NOTE: Start with installing the Daisy Seed examples repo. It will help you get e
    ```bash
    git clone https://github.com/YOUR_USERNAME/Daisy-Seed-Mono-Synth.git
    cd Daisy-Seed-Mono-Synth
+   git submodule update --init --recursive
    ```
-   *(Libraries are included - no submodule initialization needed)*
 
 3. **Build Libraries** (from project root):
    ```bash
